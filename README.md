@@ -3,6 +3,8 @@
 > **กิจกรรม:** Work 1 — พัฒนาหน้าเว็บไซต์ในฐานะ Programmer เพื่อลงทะเบียน (10 คะแนนจริง)  
 > **กำหนดส่ง:** ภายใน 1 ก.ย. 2569  
 > **ผู้พัฒนา (Programmer):** `66040233122` — `นายปณิธิ จ่าเหม`  
+> **GitHub Repository:** [https://github.com/SolightzZ/work1-eldoria-registration-form](https://github.com/SolightzZ/work1-eldoria-registration-form)  
+> **Live Website (GitHub Pages):** [https://solightzz.github.io/work1-eldoria-registration-form/](https://solightzz.github.io/work1-eldoria-registration-form/)  
 > **เว็บไซต์อ้างอิงต้นฉบับ:** [https://www.realbugz.com/en/task-form](https://www.realbugz.com/en/task-form)  
 > **เอกสารเฉลยจุดบกพร่อง:** [BUG.md](./BUG.md)
 
