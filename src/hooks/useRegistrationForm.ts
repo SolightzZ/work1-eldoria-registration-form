@@ -91,10 +91,17 @@ export function useRegistrationForm() {
   }
 
   const fillDemoData = useCallback(() => {
-    setForm((prev) => ({
-      ...prev,
+    // Create a mock simulated passport image File object (QA/Demo Fill)
+    const mockPassportImage = new File(
+      ['ELDORIA-EXPEDITION-MOCK-PASSPORT-IMAGE-DATA-2026'],
+      'peter_ford_passport_scan.png',
+      { type: 'image/png' }
+    )
+
+    setForm({
       ...DEMO_FORM_DATA,
-    }))
+      passportFile: mockPassportImage,
+    })
     setErrors({})
   }, [])
 
@@ -147,7 +154,12 @@ export function useRegistrationForm() {
       setTimeout(() => {
         setIsSubmitting(false)
         setSubmitted(true)
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setTimeout(() => {
+          const formSection = document.getElementById('registration-form')
+          if (formSection) {
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 60)
       }, 600)
     } else {
       setIsShaking(true)
@@ -166,7 +178,12 @@ export function useRegistrationForm() {
     setErrors({})
     setSubmitted(false)
     setIsClearModalOpen(false)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setTimeout(() => {
+      const formSection = document.getElementById('registration-form')
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 60)
   }
 
   const openClearModal = () => setIsClearModalOpen(true)

@@ -57,6 +57,95 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-stagger-1 {
+  opacity: 0;
+  animation: heroReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0ms forwards;
+}
+.hero-stagger-2 {
+  opacity: 0;
+  animation: heroReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+}
+.hero-stagger-3 {
+  opacity: 0;
+  animation: heroReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) 260ms forwards;
+}
+.hero-stagger-4 {
+  opacity: 0;
+  animation: heroReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) 400ms forwards;
+}
+.hero-stagger-5 {
+  opacity: 0;
+  animation: heroReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) 520ms forwards;
+}
+.hero-stagger-6 {
+  opacity: 0;
+  animation: heroReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) 650ms forwards;
+}
+
+@keyframes subtitleShimmer {
+  0% {
+    background-position: -150% center;
+  }
+  100% {
+    background-position: 150% center;
+  }
+}
+
+.subtitle-shimmer-once {
+  background: linear-gradient(90deg, #0284c7 0%, #1d4ed8 30%, #38bdf8 55%, #1e40af 80%, #0369a1 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: subtitleShimmer 2.2s cubic-bezier(0.22, 1, 0.36, 1) 260ms forwards;
+}
+
+@keyframes dotPulseSubtle {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.badge-dot-pulse {
+  animation: dotPulseSubtle 2.8s ease-in-out infinite;
+}
+
+@keyframes discoveryPopGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.55));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px transparent);
+  }
+}
+
+.discovery-pop-glow {
+  animation: discoveryPopGlow 0.9s cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
+}
+
 @keyframes pop {
   0%   { transform: scale(0.8); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
@@ -261,5 +350,24 @@ body {
   .print-receipt-card {
     page-break-inside: avoid;
     break-inside: avoid;
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-stagger-1,
+  .hero-stagger-2,
+  .hero-stagger-3,
+  .hero-stagger-4,
+  .hero-stagger-5,
+  .hero-stagger-6 {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

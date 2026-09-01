@@ -31,7 +31,6 @@ export const CONTACT_METHOD_OPTIONS = [
    { value: 'Telegram', label: 'Telegram' },
 ] as const;
 
-export const ACCEPTED_FILE_TYPES = '.jpg,.jpeg,.png,.pdf';
 export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
 export const DEMO_FORM_DATA = {

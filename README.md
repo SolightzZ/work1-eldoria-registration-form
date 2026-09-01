@@ -23,26 +23,17 @@
 | ข้อกำหนดตามโจทย์ | สถานะ | รายละเอียดที่พัฒนา |
 |---|:---:|---|
 | **1. ศึกษาองค์ประกอบเว็บต้นฉบับ** | ✅ ครบถ้วน | วิเคราะห์โครงสร้างจาก Realbugz Task Form นำฟิลด์ข้อมูลมาพัฒนาต่อยอดครบถ้วน 100% |
-| **2. Input Data ครบหรือมากกว่า + หน้าตาสวยงาม** | ✅ ครบถ้วน | รองรับ 13 ฟิลด์ข้อมูล (Input Text, Email, Tel, Date, Select Dropdown, Multi-select Role Cards, Region Radio Grid, Interactive Salary Slider, File Drag-and-Drop, Textarea, Terms Checkbox) |
+| **2. Input Data ครบหรือมากกว่า + หน้าตาสวยงาม** | ✅ ครบถ้วน | มีฟิลด์ข้อมูลสำหรับการลงทะเบียนครบตาม Requirement พร้อมรองรับ Input หลากหลายประเภท (Text, Email, Tel, Date, Select Dropdown, Multi-select Role Cards, Region Radio Grid, Interactive Salary Slider, File Drag-and-Drop, Textarea, Terms Checkbox) |
 | **3. แสดงรหัส-ชื่อ-สกุลภาษาไทย** | ✅ ครบถ้วน | แสดง `66040233122` — `นายปณิธิ จ่าเหม` ใน Sticky Navbar, ส่วนหัวของระบบ, กล่อง Metadata ท้ายเว็บ และใบเสร็จยืนยันการลงทะเบียน |
-| **4. Validation Logic + Bug ซ่อนไว้ 2 ตำแหน่ง** | ✅ ครบถ้วน | มีระบบ Validation ครบทุกฟิลด์ พร้อมแอบซ่อน Bug 2 จุด ใน `src/lib/validation.ts` บันทึกเฉลยไว้ใน `BUG.md` |
+| **4. Validation Logic + Bug ซ่อนไว้ 2 ตำแหน่ง** | ✅ ครบถ้วน | มีระบบ Validation ครบทุกฟิลด์ พร้อมแอบซ่อน Bug 2 จุด สำหรับให้ Tester ฝึกทดสอบและค้นหาจุดผิดพลาด (บันทึกเฉลยไว้ใน `BUG.md`) |
 | **5. รองรับการแสดงผล Responsive ทุกอุปกรณ์** | ✅ ครบถ้วน | รองรับ Desktop (≥1024px), Tablet (640px–1023px) และ Mobile (320px–639px) พร้อมฟังก์ชัน Print Receipt A4 |
 
 ---
 
 ## 🐛 จุดบกพร่องที่แอบซ่อนไว้ 2 ตำแหน่ง (Intentional Bugs for Testers)
 
-> 💡 *ดูรายละเอียดเชิงลึกและแนวทางแก้ไขทั้งหมดได้ที่ [BUG.md](./BUG.md)*
-
-### 🔍 Bug #1: การตรวจสอบอีเมลหลวมเกินไป (Missing Top-Level Domain)
-- **ตำแหน่ง:** `src/lib/validation.ts` → `validateEmail()`
-- **อาการ:** Regex ไม่ได้บังคับให้มี TLD (`.com`, `.co.th`)
-- **การทดสอบ:** กรอกอีเมล เช่น `peter@eldoria` หรือ `test@localhost` → ระบบยอมรับให้ผ่าน ❌ *(ที่ถูกต้องควรแจ้งเตือนข้อผิดพลาด)*
-
-### 🔍 Bug #2: เบอร์โทรศัพท์อนุญาตให้มีตัวอักษรปน (Contact Number Sanitization Bug)
-- **ตำแหน่ง:** `src/lib/validation.ts` → `validateContactNumber()`
-- **อาการ:** มีการตัดตัวอักษรที่ไม่ใช่ตัวเลขออกก่อนตรวจความยาวหลัก (`replace(/[^0-9+]/g, '')`)
-- **การทดสอบ:** กรอกเบอร์ เช่น `081-234-5678-ABC` หรือ `+1234567890#EXT` → ระบบยอมรับให้ผ่าน ❌ *(ที่ถูกต้องควรปฏิเสธตัวอักษรภาษาอังกฤษ)*
+> 💡 *ตามข้อกำหนดของกิจกรรม Work 1 ได้มีการแอบซ่อน Functional Bug ไว้ 2 ตำแหน่งในระบบ Input Validation เพื่อให้เพื่อนนักศึกษาที่ทำหน้าที่เป็น **Tester** ได้ฝึกปฏิบัติการทดสอบระบบ*  
+> 🔒 *ดูรายงานเชิงลึกและเอกสารเฉลยสำหรับอาจารย์ผู้ตรวจประเมินได้ที่ [BUG.md](./BUG.md)*
 
 ---
 

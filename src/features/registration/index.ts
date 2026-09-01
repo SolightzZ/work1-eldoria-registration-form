@@ -1,6 +1,4 @@
-export { BackgroundBlobs } from './BackgroundBlobs'
 export { SuccessScreen } from './SuccessScreen'
-export { SectionHeader } from './components/SectionHeader'
 export { FormErrorSummary } from './components/FormErrorSummary'
 export { TermsModal } from './components/TermsModal'
 export { ClearConfirmModal } from './components/ClearConfirmModal'

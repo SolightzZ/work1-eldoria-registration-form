@@ -67,6 +67,7 @@ export function RegistrationPage({ formHook }: Props) {
         <FormCardHeader
           title="Register for the expedition in search of Eldoria"
           subtitle="แบบฟอร์มลงทะเบียนเข้าร่วมทีมสำรวจดินแดนโบราณเอลโดเรีย (Required fields are marked with *)"
+          onFillDemo={formHook.fillDemoData}
         />
 
         {/* Top Error Summary Banner (QA-003) */}

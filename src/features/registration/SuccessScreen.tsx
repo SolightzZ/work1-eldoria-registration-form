@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
 import { STUDENT_ID, STUDENT_NAME } from '../../lib/constants'
+import { SUCCESS_CONTENT } from '../../lib/content'
 import type { FormState } from '../../types/form'
 
 type Props = {
@@ -72,17 +73,17 @@ Additional Comments: ${form.comment || 'N/A'}
 
           <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-semibold text-emerald-800 mb-3">
             <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
-            <span>Registration Submitted</span>
+            <span>{SUCCESS_CONTENT.heroBadge}</span>
           </div>
         </div>
 
         {/* 2. Success Title & Timestamp */}
         <div className="text-center print:text-left print:mb-4">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight print:text-xl print:text-slate-900">
-            ลงทะเบียนสำเร็จ (Submission Successful)
+            {SUCCESS_CONTENT.title}
           </h2>
           <p className="mt-1.5 text-xs sm:text-sm text-slate-500 print:text-xs print:text-slate-600">
-            ระบบได้รับข้อมูลใบสมัครเข้าร่วมทีมสำรวจ Eldoria เรียบร้อยแล้ว ({submissionDate})
+            {SUCCESS_CONTENT.subtitlePrefix} ({submissionDate})
           </p>
         </div>
 
@@ -91,10 +92,10 @@ Additional Comments: ${form.comment || 'N/A'}
           <div className="flex items-center justify-between border-b border-slate-200 pb-3.5">
             <div className="flex items-center gap-2 font-bold text-slate-900 text-xs sm:text-sm uppercase tracking-wider">
               <FileCheck className="h-4.5 w-4.5 text-sky-600" />
-              <span>Registration Summary (สรุปข้อมูลใบสมัคร)</span>
+              <span>{SUCCESS_CONTENT.receiptTitle}</span>
             </div>
             <span className="text-xs font-mono font-semibold text-slate-500 bg-white px-2.5 py-1 rounded-md border border-slate-200 shadow-2xs">
-              Eldoria 2026
+              {SUCCESS_CONTENT.receiptTag}
             </span>
           </div>
 
@@ -231,7 +232,7 @@ Additional Comments: ${form.comment || 'N/A'}
               icon={copied ? <CheckCheck className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
               onClick={handleCopySummary}
             >
-              {copied ? 'คัดลอกสำเร็จแล้ว!' : 'คัดลอกข้อมูลสรุป (Copy)'}
+              {copied ? SUCCESS_CONTENT.buttonCopied : SUCCESS_CONTENT.buttonCopy}
             </Button>
 
             <Button
@@ -242,7 +243,7 @@ Additional Comments: ${form.comment || 'N/A'}
               icon={<Printer className="h-4 w-4" />}
               onClick={handlePrint}
             >
-              พิมพ์ใบสมัคร (Print)
+              {SUCCESS_CONTENT.buttonPrint}
             </Button>
           </div>
 
@@ -253,13 +254,13 @@ Additional Comments: ${form.comment || 'N/A'}
             fullWidth
             icon={<RotateCcw className="h-4 w-4" />}
           >
-            ลงทะเบียนใหม่อีกครั้ง (Register Another)
+            {SUCCESS_CONTENT.buttonReset}
           </Button>
         </div>
 
         {/* 5. Developer Identification Footer */}
         <div className="mt-8 pt-5 border-t border-slate-100 text-xs text-slate-400 no-print">
-          นักศึกษาผู้พัฒนา: <span className="font-mono text-sky-700 font-bold">{STUDENT_ID}</span> — {STUDENT_NAME}
+          {SUCCESS_CONTENT.devLabel} <span className="font-mono text-sky-700 font-bold">{STUDENT_ID}</span> — {STUDENT_NAME}
         </div>
       </div>
     </div>
