@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { User, Mail, Phone, Calendar, Briefcase } from 'lucide-react'
 import type { FormState, Errors, ChangeHandler } from '../../../types/form'
 import { EXPERIENCE_OPTIONS } from '../../../lib/constants'
@@ -20,6 +21,10 @@ export function PersonalInfoSection({
   onChange,
   isComplete,
 }: Props) {
+  const maxDob = useMemo(() => {
+    return new Date().toISOString().split('T')[0]
+  }, [])
+
   return (
     <div className="space-y-4">
       <SectionHeader
@@ -99,7 +104,7 @@ export function PersonalInfoSection({
             name="dateOfBirth"
             value={form.dateOfBirth}
             min="1920-01-01"
-            max="2011-12-31"
+            max={maxDob}
             onChange={onChange}
             className={`pl-11 ${inputClassFor('dateOfBirth', form, errors)}`}
           />

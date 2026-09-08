@@ -10,6 +10,7 @@ import {
   validateContactNumber,
   validateDateOfBirth,
   validateEmail,
+  validateFullName,
   validateRequired,
   validateSalary,
 } from '../lib/validation'
@@ -110,6 +111,8 @@ export function useRegistrationForm() {
 
     if (!validateRequired(state.fullName))
       next.fullName = 'Full Name is required (กรุณากรอกชื่อ-นามสกุล)'
+    else if (!validateFullName(state.fullName))
+      next.fullName = 'Full Name must be at least 2 characters, letters only, and contain first & last name'
 
     if (!state.email) next.email = 'Email is required (กรุณากรอกอีเมล)'
     else if (!validateEmail(state.email))
@@ -121,7 +124,7 @@ export function useRegistrationForm() {
       next.contactNumber = 'Invalid contact number format'
 
     if (!validateDateOfBirth(state.dateOfBirth))
-      next.dateOfBirth = 'Valid Date of Birth is required (15-100 yrs)'
+      next.dateOfBirth = 'Valid Date of Birth is required (13 yrs+)'
 
     if (!state.preferredRole || state.preferredRole.length === 0)
       next.preferredRole = 'Please select at least one Preferred Role in the Expedition'
@@ -130,7 +133,7 @@ export function useRegistrationForm() {
       next.preferredRegion = 'Please select a Preferred Expedition Region'
 
     if (!validateSalary(state.salary))
-      next.salary = 'Desired salary must be between 0 - 100,000'
+      next.salary = 'Desired salary must be between 100 - 100,000'
 
     if (!state.passportFile)
       next.passportFile = 'Upload Passport/ID is required (กรุณาแนบไฟล์)'
@@ -240,9 +243,12 @@ export function useRegistrationForm() {
     }
   }, [form])
 
+  const errorCount = useMemo(() => Object.keys(errors).length, [errors])
+
   return {
     form,
     errors,
+    errorCount,
     submitted,
     isSubmitting,
     progress,

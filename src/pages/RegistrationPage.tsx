@@ -23,6 +23,7 @@ export function RegistrationPage({ formHook }: Props) {
   const {
     form,
     errors,
+    errorCount,
     submitted,
     isSubmitting,
     progress,
@@ -120,6 +121,7 @@ export function RegistrationPage({ formHook }: Props) {
           <ConfirmationSection
             form={form}
             errors={errors}
+            errorCount={errorCount}
             onChange={onChange}
             isSubmitting={isSubmitting}
             isComplete={sectionStates.sec06}

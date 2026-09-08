@@ -1,4 +1,4 @@
-import { Send, RotateCcw, Loader2, FileText } from 'lucide-react'
+import { Send, RotateCcw, Loader2, FileText, AlertTriangle } from 'lucide-react'
 import type { FormState, Errors, ChangeHandler } from '../../../types/form'
 import { Button } from '../../../components/ui/Button'
 import { Checkbox } from '../../../components/ui/Checkbox'
@@ -7,6 +7,7 @@ import { SectionHeader } from '../components/SectionHeader'
 type Props = {
   form: FormState
   errors: Errors
+  errorCount: number
   onChange: ChangeHandler
   isSubmitting: boolean
   isComplete: boolean
@@ -17,12 +18,15 @@ type Props = {
 export function ConfirmationSection({
   form,
   errors,
+  errorCount,
   onChange,
   isSubmitting,
   isComplete,
   onOpenTermsModal,
   onOpenClearModal,
 }: Props) {
+  const hasErrors = errorCount > 0
+
   return (
     <div className="space-y-4 pt-2">
       <SectionHeader
@@ -30,6 +34,19 @@ export function ConfirmationSection({
         title="Confirmation & Submission (การยืนยันและส่งใบสมัคร)"
         isComplete={isComplete}
       />
+
+      {/* Warning Banner when errors exist */}
+      {hasErrors && (
+        <div className="flex items-start gap-3 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 animate-fade-up">
+          <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+          <div className="text-xs sm:text-sm">
+            <p className="font-bold">กรุณากรอกข้อมูลให้ครบถ้วนก่อนกด Submit</p>
+            <p className="mt-0.5 text-amber-700">
+              พบข้อผิดพลาด {errorCount} รายการ กรุณาตรวจสอบและแก้ไขข้อมูลด้านบนให้ครบถ้วน
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Terms & Conditions Checkbox (QA-013) - Mobile Optimized & Light Blue Theme */}
       <div className="space-y-2.5">
@@ -72,7 +89,7 @@ export function ConfirmationSection({
             variant="primary"
             size="lg"
             fullWidth
-            disabled={isSubmitting}
+            disabled={isSubmitting || hasErrors}
             icon={
               isSubmitting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -81,7 +98,11 @@ export function ConfirmationSection({
               )
             }
           >
-            {isSubmitting ? 'Submitting Registration...' : 'Submit Registration'}
+            {isSubmitting
+              ? 'Submitting Registration...'
+              : hasErrors
+                ? `แก้ไขข้อมูลให้ครบก่อน (${errorCount} รายการ)`
+                : 'Submit Registration'}
           </Button>
         </div>
 

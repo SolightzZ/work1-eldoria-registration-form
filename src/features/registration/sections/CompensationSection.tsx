@@ -50,7 +50,7 @@ export function CompensationSection({
             <input
               type="range"
               name="salaryRange"
-              min={0}
+              min={100}
               max={2000}
               step={25}
               value={Math.min(form.salary, 2000)}
@@ -58,7 +58,7 @@ export function CompensationSection({
               className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-sky-600"
             />
             <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-mono">
-              <span>$0</span>
+              <span>$100</span>
               <span>$500</span>
               <span>$1,000</span>
               <span>$1,500</span>
