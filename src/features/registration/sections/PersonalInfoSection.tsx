@@ -83,9 +83,10 @@ export function PersonalInfoSection({
             value={form.contactNumber}
             onChange={onChange}
             type="tel"
-            placeholder="e.g., +1234567890"
+            placeholder="e.g., 0812345678"
             inputMode="tel"
             autoComplete="tel"
+            maxLength={10}
             className={`pl-11 font-mono tracking-wider ${inputClassFor('contactNumber', form, errors)}`}
           />
         </FloatingField>

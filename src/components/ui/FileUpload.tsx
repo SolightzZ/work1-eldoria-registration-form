@@ -16,9 +16,9 @@ export function FileUpload({
   name,
   file,
   onChange,
-  accept = '.jpg,.jpeg,.png,.pdf',
+  accept = '.jpg,.jpeg,.png',
   error,
-  hint = 'JPG, PNG, PDF (สูงสุด 5MB)',
+  hint = 'JPG, PNG (สูงสุด 5MB)',
 }: Props) {
   const [isDragging, setIsDragging] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)

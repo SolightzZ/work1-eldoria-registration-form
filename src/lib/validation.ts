@@ -9,9 +9,8 @@ export function validateEmail(email: string): boolean {
 
 export function validateContactNumber(phone: string): boolean {
   if (!phone.trim()) return false
-  if (!/^\+?[0-9\-\s]+$/.test(phone.trim())) return false
-  const digitsOnly = phone.replace(/[^0-9]/g, '')
-  return digitsOnly.length >= 9 && digitsOnly.length <= 15
+  if (!/^0[0-9]{9}$/.test(phone.trim())) return false
+  return true
 }
 
 export function validateRequired(value: string): boolean {

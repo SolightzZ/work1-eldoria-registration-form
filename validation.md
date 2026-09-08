@@ -66,26 +66,24 @@ All validation rules for the registration form fields.
 | Rule | Description |
 |------|-------------|
 | Required | Cannot be empty |
-| Format | Only `+`, digits (0-9), hyphens (`-`), spaces |
-| Digit count | 9 to 15 digits |
+| Format | Thai phone number only |
+| Pattern | Starts with 0, exactly 10 digits |
 
-**Validation steps:**
-1. Check format: `/^\+?[0-9\-\s]+$/`
-2. Count digits only: 9-15
+**Regex:** `/^0[0-9]{9}$/`
 
 **Error messages:**
 - `Contact Number is required (กรุณากรอกเบอร์ติดต่อ)`
-- `Invalid contact number format`
+- `Invalid contact number format (ต้องเป็นเบอร์โทรไทย 10 หลัก ขึ้นต้นด้วย 0)`
 
 **Examples:**
 | Input | Result |
 |-------|--------|
-| `+1234567890` | Pass |
-| `081-234-5678` | Pass |
-| `1234567890` | Pass |
-| `+1234567890#ABC` | Fail (has #) |
-| `phone:0812345678` | Fail (has letters) |
-| `12345` | Fail (too short) |
+| `0812345678` | Pass |
+| `0987654321` | Pass |
+| `1234567890` | Fail (ไม่ขึ้นต้นด้วย 0) |
+| `081234567` | Fail (9 หลัก) |
+| `08123456789` | Fail (11 หลัก) |
+| `+66812345678` | Fail (มี +) |
 
 ---
 
@@ -186,18 +184,18 @@ return typeof value === 'number' && !isNaN(value) && value >= 100 && value <= 10
 | Rule | Description |
 |------|-------------|
 | Required | Yes |
-| Allowed formats | JPG, PNG, PDF |
+| Allowed formats | JPG, PNG only |
 | Maximum size | 5MB |
 
 **Validation:**
 - Check file size: `file.size <= 5 * 1024 * 1024`
-- Check file type: `image/jpeg`, `image/png`, `application/pdf`
-- Check file extension: `jpg`, `jpeg`, `png`, `pdf`
+- Check file type: `image/jpeg`, `image/png`
+- Check file extension: `jpg`, `jpeg`, `png`
 
 **Error messages:**
 - `Upload Passport/ID is required (กรุณาแนบไฟล์)`
 - `File size exceeds 5MB limit (ไฟล์ขนาดเกิน 5MB)`
-- `Allowed formats: JPG, PNG, PDF only (อนุญาตเฉพาะ JPG, PNG, PDF)`
+- `Allowed formats: JPG, PNG only (อนุญาตเฉพาะ JPG, PNG)`
 
 ---
 

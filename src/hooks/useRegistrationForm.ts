@@ -41,9 +41,9 @@ export function useRegistrationForm() {
       const file = (e.target as HTMLInputElement).files?.[0] ?? null
       if (file) {
         // Validate file size and type
-        const validTypes = ['image/jpeg', 'image/png', 'application/pdf']
+        const validTypes = ['image/jpeg', 'image/png']
         const ext = file.name.split('.').pop()?.toLowerCase()
-        const validExts = ['jpg', 'jpeg', 'png', 'pdf']
+        const validExts = ['jpg', 'jpeg', 'png']
 
         if (file.size > MAX_FILE_SIZE) {
           setErrors((prev) => ({
@@ -56,7 +56,7 @@ export function useRegistrationForm() {
         if (!validTypes.includes(file.type) && !validExts.includes(ext ?? '')) {
           setErrors((prev) => ({
             ...prev,
-            passportFile: 'Allowed formats: JPG, PNG, PDF only (อนุญาตเฉพาะ JPG, PNG, PDF)',
+            passportFile: 'Allowed formats: JPG, PNG only (อนุญาตเฉพาะ JPG, PNG)',
           }))
           return
         }
@@ -121,7 +121,7 @@ export function useRegistrationForm() {
     if (!state.contactNumber)
       next.contactNumber = 'Contact Number is required (กรุณากรอกเบอร์ติดต่อ)'
     else if (!validateContactNumber(state.contactNumber))
-      next.contactNumber = 'Invalid contact number format'
+      next.contactNumber = 'Invalid contact number format (ต้องเป็นเบอร์โทรไทย 10 หลัก ขึ้นต้นด้วย 0)'
 
     if (!validateDateOfBirth(state.dateOfBirth))
       next.dateOfBirth = 'Valid Date of Birth is required (13 yrs+)'

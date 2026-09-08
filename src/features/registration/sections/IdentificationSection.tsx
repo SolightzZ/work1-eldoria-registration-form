@@ -27,13 +27,13 @@ export function IdentificationSection({
       <div>
         <label className="block text-xs md:text-sm font-bold text-slate-800 mb-2">
           Upload Passport/ID <span className="text-rose-500 font-bold">*</span>{' '}
-          <span className="text-xs font-normal text-slate-500">(JPG, PNG, PDF - สูงสุด 5MB)</span>
+          <span className="text-xs font-normal text-slate-500">(JPG, PNG - สูงสุด 5MB)</span>
         </label>
         <FileUpload
           name="passportFile"
           file={form.passportFile}
           onChange={onChange}
-          hint="Upload Passport/ID (JPG, PNG, PDF - max 5MB)"
+          hint="Upload Passport/ID (JPG, PNG - max 5MB)"
           error={errors.passportFile}
         />
       </div>
